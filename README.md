@@ -31,7 +31,8 @@ The projects consist of at least 2 separate apps:
 
 * Used technologies: [ASP.NET MVC](https://www.asp.net/), [Entity Framework(MSSQL)](https://msdn.microsoft.com/en-us/library/aa937723(v=vs.113).aspx), [Web Sockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) (optional).
 * Database approach: [Code First](http://www.entityframeworktutorial.net/code-first/what-is-code-first.aspx)
-* Database structure: Main tables `STUDENTS`, `COURSES`, `HOMEWORKS`. Students are assigned to Courses and have grades. A Course has Students and Homeworks. A Homework has Assigned Student's ID and Checked Student ID, and also a due date. 
+* Database structure: Main tables `STUDENTS`, `COURSES`, `ASSIGNMENT`. Students are assigned to Courses and have grades. A Course has Students and Homeworks. A Homework has Assigned Student's ID and Checked Student ID, and also a due date. 
+* Database schemma: [Gliffy Entity-Relationship Diagram](https://go.gliffy.com/go/publish/12396343)
 * Functionalities: The service provides options for checking the due homeworks, uploading a homeworks as zip or text, automatical test of the homework(optional), download zip for manual check of random homeworks and a good layouts for listing of the students information regarding the course/homeworks status. Additional services may cover live chat with mentors, public chatrooms for discussions, notifications for messages and scores received, feedback bord for the homeworks.
 
 ### Front-End Service Description
