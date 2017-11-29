@@ -35,7 +35,7 @@ The projects consist of at least 2 separate apps:
 * Database schemma: [Gliffy Entity-Relationship Diagram](https://go.gliffy.com/go/publish/12396343)
 * Functionalities: The service provides options for checking the due homeworks, uploading a homeworks as zip or text, automatical test of the homework(optional), download zip for manual check of random homeworks and a good layouts for listing of the students information regarding the course/homeworks status. Additional services may cover live chat with mentors, public chatrooms for discussions, notifications for messages and scores received, feedback bord for the homeworks.
 
-### Front-End Client [Backend Repository](https://github.com/The-great-7/Frontend)
+### Front-End Client [Frontend Repository](https://github.com/The-great-7/Frontend)
 
 ## License 
 
