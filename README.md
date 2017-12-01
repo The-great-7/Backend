@@ -11,7 +11,7 @@ This is the final project for the course [Practical Teamwork](https://softuni.bg
 * [Boyan Medarski](https://github.com)
 * [Dimitar Petrov](https://github.com)
 * [Kiril Koev](https://github.com)
-* [Martin Petkov](https://github.com)
+* [Martin Petkov](https://github.com/Supbads)
 * [Tony Dimitrov](https://github.com)
 
 ## Task Management Tool
