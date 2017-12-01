@@ -1,9 +1,6 @@
 ﻿namespace Project.App
 {
-    using System;
-
     using Project.Data;
-
     using Microsoft.EntityFrameworkCore;
 
     public class StartUp

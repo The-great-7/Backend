@@ -2,7 +2,6 @@
 {
     using Project.Models;
     using Project.Data.EntityConfiguration;
-
     using Microsoft.EntityFrameworkCore;
 
     public class ProjectDbContext : DbContext

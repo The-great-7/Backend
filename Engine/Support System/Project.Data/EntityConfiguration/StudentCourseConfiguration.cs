@@ -1,9 +1,7 @@
 ﻿namespace Project.Data.EntityConfiguration
 {
     using System;
-
     using Project.Models;
-
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
