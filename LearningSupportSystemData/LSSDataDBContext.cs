@@ -13,6 +13,10 @@ namespace LearningSupportSystemData
         {
         }
 
+        public LSSDataDBContext()
+        {
+        }
+
         public DbSet<Assignment> Assignments { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Student> Students { get; set; }

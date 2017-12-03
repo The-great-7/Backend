@@ -10,6 +10,12 @@
             Assignments = new HashSet<Assignment>();
         }
 
+        public Course(int id, string name)
+        {
+            this.CourseId = id;
+            this.CourseName = name;
+        }
+
         public int CourseId { get; set; }
         public string CourseName { get; set; }
         
