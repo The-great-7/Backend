@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace B2CWebApi
+namespace LearningSupportSystemAPI
 {
     public class Startup
     {

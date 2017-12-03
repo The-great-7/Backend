@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearningSupportSystemAPI", "LearningSupportSystemAPI\LearningSupportSystemAPI.csproj", "{F7346FAC-2072-4830-92FB-F06AE197B86F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LearningSupportSystemData", "LearningSupportSystemData\LearningSupportSystemData.csproj", "{A2A401E9-9CA1-415A-A953-8058C7AE4AEB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F7346FAC-2072-4830-92FB-F06AE197B86F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7346FAC-2072-4830-92FB-F06AE197B86F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7346FAC-2072-4830-92FB-F06AE197B86F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2A401E9-9CA1-415A-A953-8058C7AE4AEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2A401E9-9CA1-415A-A953-8058C7AE4AEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2A401E9-9CA1-415A-A953-8058C7AE4AEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2A401E9-9CA1-415A-A953-8058C7AE4AEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

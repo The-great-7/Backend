@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace B2CWebApi.Controllers
+namespace LearningSupportSystemAPI.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]

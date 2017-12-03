@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace B2C_WebApi.Controllers
+namespace LearningSupportSystemAPI.Controllers
 {
     public class HomeController : Controller
     {
