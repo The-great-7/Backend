@@ -22,5 +22,8 @@
   <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LearningSupportSystemData\LearningSupportSystemData.csproj" />
+  </ItemGroup>
 
 </Project>

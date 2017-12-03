@@ -7,7 +7,7 @@ using System.Text;
 
 namespace LearningSupportSystemData
 {
-    class LSSDataDBContext : DbContext
+    public class LSSDataDBContext : DbContext
     {
         public LSSDataDBContext(DbContextOptions<LSSDataDBContext> options) : base(options)
         {

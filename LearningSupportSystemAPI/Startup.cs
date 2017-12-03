@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using LearningSupportSystemData;
+using Microsoft.EntityFrameworkCore;
 
 namespace LearningSupportSystemAPI
 {
@@ -36,7 +38,10 @@ namespace LearningSupportSystemAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-              services.AddAuthentication(options =>
+            services.AddDbContext<LSSDataDBContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddAuthentication(options =>
               {
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
               })
@@ -49,6 +54,7 @@ namespace LearningSupportSystemAPI
                     OnAuthenticationFailed = AuthenticationFailed
                   };
                 });
+
 
             // Add framework services.
             services.AddMvc();
