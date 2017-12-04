@@ -1,5 +1,6 @@
 ﻿namespace LSS.Api.Controllers
 {
+    using System;
     using Microsoft.AspNetCore.Mvc;
 
     [Route("api/courses")]
@@ -18,7 +19,7 @@
         [HttpGet("{id}", Name = "Get")]
         public IActionResult Get(int id)
         {
-            return null;
+            throw new NotImplementedException();
         }
         
         // POST: api/Courses

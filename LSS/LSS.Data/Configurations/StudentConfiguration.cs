@@ -10,24 +10,27 @@
         {
             builder.HasKey(s => s.Id);
 
-            builder.Property(f => f.FirstName)
+            builder.Property(s => s.FirstName)
                 .HasMaxLength(30)
                 .IsRequired(true);
 
-            builder.Property(m => m.MiddleName)
+            builder.Property(s => s.MiddleName)
                 .HasMaxLength(30)
                 .IsRequired(true);
 
-            builder.Property(l => l.LastName)
+            builder.Property(s => s.LastName)
                 .HasMaxLength(30)
                 .IsRequired(true);
 
-            builder.Property(a => a.Address)
+            builder.Property(s => s.Address)
                 .HasMaxLength(200)
                 .IsRequired(false);
 
-            builder.Property(p => p.PhoneNumber)
+            builder.Property(s => s.PhoneNumber)
                 .HasColumnType("VARCHAR(10)")
+                .IsRequired(false);
+
+            builder.Property(s => s.Grade)
                 .IsRequired(false);
         }
     }

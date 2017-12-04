@@ -1,7 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Z.EntityFramework.Plus.EFCore" Version="1.7.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LSS.Data.Models\LSS.Data.Models.csproj" />
+    <ProjectReference Include="..\LSS.DataModels\LSS.DataModels.csproj" />
+    <ProjectReference Include="..\LSS.Data\LSS.Data.csproj" />
+  </ItemGroup>
 
 </Project>

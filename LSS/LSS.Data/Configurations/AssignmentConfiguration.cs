@@ -20,7 +20,8 @@
                 .HasForeignKey(c => c.CourseId);
 
             builder.Property(d => d.DueDate)
-                .HasDefaultValue(DateTime.Now.AddDays(7));
+                .HasDefaultValue(DateTime.Now.AddDays(7))
+                .IsRequired();
         }
     }
 }

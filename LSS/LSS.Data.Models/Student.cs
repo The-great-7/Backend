@@ -16,7 +16,7 @@
 
         public string PhoneNumber { get; set; }
 
-        public decimal Grade { get; set; }
+        public decimal? Grade { get; set; }
 
         public ICollection<StudentCourse> StudentCourses { get; set; } = new HashSet<StudentCourse>();
         public ICollection<StudentAssignment> StudentAssignments { get; set; } = new HashSet<StudentAssignment>();
