@@ -1,15 +1,14 @@
-﻿namespace LearningSupportSystemData.Models.Configurations
+﻿namespace LSS.Data.Configurations
 {
-    using System;
-    using LearningSupportSystemData.Models;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
+    using Models;
+    
     public class StudentConfiguration : IEntityTypeConfiguration<Student>
     {
         public void Configure(EntityTypeBuilder<Student> builder)
         {
-            builder.HasKey(s => s.StudentId);
+            builder.HasKey(s => s.Id);
 
             builder.Property(f => f.FirstName)
                 .HasMaxLength(30)

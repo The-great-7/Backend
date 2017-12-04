@@ -10,11 +10,10 @@
         public string Name { get; set; }
 
         public int CourseId { get; set; }
-
         public Course Course {get; set; }
 
         public DateTime DueDate { get; set; }
 
-        public ICollection<StudentAssignment> Students { get; set; } = new HashSet<StudentAssignment>();
+        public ICollection<StudentAssignment> StudentAssignments { get; set; } = new HashSet<StudentAssignment>();
     }
 }

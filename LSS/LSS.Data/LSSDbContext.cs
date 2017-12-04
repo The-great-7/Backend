@@ -2,6 +2,7 @@
 {
     using Models;
     using Microsoft.EntityFrameworkCore;
+    using LSS.Data.Configurations;
 
     public class LSSDbContext : DbContext
     {
@@ -26,27 +27,11 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder
-                .Entity<StudentCourse>()
-                .HasKey(sc => new { sc.StudentId, sc.CourseId });
-
-            builder
-                .Entity<StudentAssignment>()
-                .HasKey(sa => new { sa.StudentId, sa.AssignmentId });
-
-            builder
-                .Entity<Student>()
-                .HasMany(s => s.Courses)
-                .WithOne(c => c.Student)
-                .HasForeignKey(s => s.StudentId);
-
-            builder
-                .Entity<Student>()
-                .HasMany(s => s.Assignments)
-                .WithOne(a => a.Student)
-                .HasForeignKey(s => s.StudentId);
-
-           // TODO
+            builder.ApplyConfiguration(new AssignmentConfiguration());
+            builder.ApplyConfiguration(new CourseConfiguration());
+            builder.ApplyConfiguration(new StudentAssignmentConfiguration());
+            builder.ApplyConfiguration(new StudentConfiguration());
+            builder.ApplyConfiguration(new StudentCourseConfiguration());
 
             base.OnModelCreating(builder);
         }
