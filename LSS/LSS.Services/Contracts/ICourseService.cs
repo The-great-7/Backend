@@ -1,6 +1,7 @@
 ﻿namespace LSS.Services.Contracts
 {
     using LSS.Data.Models;
+    using LSS.DataModels;
 
     public interface ICourseService
     {
@@ -10,9 +11,9 @@
 
         Course AddCourse(string name);
 
-        Course[] ReplaceCourses(Course[] courses);
+        Course[] ReplaceCourses(CourseDto[] coursesDtos);
 
-        Course ReplaceCourse(int id, Course course);
+        Course ReplaceCourse(int id, CourseDto courseDto);
 
         void DeleteCourse(int id);
 

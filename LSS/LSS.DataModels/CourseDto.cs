@@ -1,4 +1,4 @@
-﻿namespace LSS.Api.Dtos
+﻿namespace LSS.DataModels
 {
     public class CourseDto
     {

@@ -1,7 +1,7 @@
 ﻿namespace LSS.Services.Contracts
 {
     using LSS.Data.Models;
-    using LSS.Api.Dtos;
+    using LSS.DataModels;
 
     public interface IStudentService
     {
@@ -11,7 +11,7 @@
 
         Student AddStudent(StudentDto studentDto);
 
-        Student[] ReplaceStudents(Student[] students);
+        Student[] ReplaceStudents(StudentDto[] students);
 
         Student ReplaceStudent(int id, StudentDto studentDto);
 

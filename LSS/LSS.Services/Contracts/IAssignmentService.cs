@@ -1,6 +1,6 @@
 ﻿namespace LSS.Services.Contracts
 {
-    using LSS.Api.Dtos;
+    using LSS.DataModels;
     using LSS.Data.Models;
 
     public interface IAssignmentService
@@ -9,14 +9,14 @@
 
         Assignment[] GetAssignment();
 
-        Assignment AddStudent(AssignmentDto assignmentDto);
+        Assignment AddAssignment(AssignmentDto assignmentDto);
 
-        Assignment[] ReplaceAssignment(AssignmentDto[] assignments);
+        Assignment[] ReplaceAssignments(AssignmentDto[] assignments);
 
         Assignment ReplaceAssignment(int id, AssignmentDto assignmentDto);
 
         void DeleteAssignment(int id);
 
-        void DeleteAssignment();
+        void DeleteAssignments();
     }
 }

@@ -3,9 +3,11 @@
     using System.Linq;
     using LSS.Data;
     using LSS.Data.Models;
-    using LSS.Services.Contracts;
+    using Contracts;
     using Microsoft.EntityFrameworkCore;
     using Z.EntityFramework.Plus;
+    using LSS.DataModels;
+    using AutoMapper;
 
     public class CourseService : ICourseService
     {
@@ -46,12 +48,16 @@
             courses.Add(course);
             context.SaveChanges();
 
-            return ByName(name);
+            //do we want ids?
+            //return ByName(name);
+            return course;
         }
 
-        public Course[] ReplaceCourses(Course[] courses)
+        public Course[] ReplaceCourses(CourseDto[] coursesDtos)
         {
             DeleteCourses();
+
+            var courses = Mapper.Map<Course[]>(coursesDtos);
 
             context.AddRange(courses);
 
@@ -60,14 +66,17 @@
             return context.Courses.AsNoTracking().ToArray();
         }
 
-        public Course ReplaceCourse(int id, Course course)
+        public Course ReplaceCourse(int id, CourseDto courseDto)
         {
-            DeleteCourse(id);
+            var course = context.Courses.Find(id);
 
-            context.Courses.Add(course);
+            course.Name = courseDto.Name;
+            
             context.SaveChanges();
-
-            return context.Courses.Find(course);
+            
+            //do we want ids?
+            //return ByName(course.Name);
+            return course;
         }
 
         public void DeleteCourse(int id)
