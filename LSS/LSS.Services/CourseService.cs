@@ -8,6 +8,7 @@
     using Z.EntityFramework.Plus;
     using LSS.DataModels;
     using AutoMapper;
+    using System.Collections.Generic;
 
     public class CourseService : ICourseService
     {
@@ -29,14 +30,14 @@
             return course;
         }
 
-        public Course[] GetCourses()
+        public ICollection<Course> GetCourses()
         {
             var courses = context.Courses.AsNoTracking().ToArray();
 
             return courses;
         }
 
-        public Course AddCourse(string name)
+        public ICollection<Course> AddCourse(string name)
         {
             var courses = context.Courses;
 
@@ -47,13 +48,12 @@
 
             courses.Add(course);
             context.SaveChanges();
-
             //do we want ids?
             //return ByName(name);
-            return course;
+            return context.Courses.ToList();
         }
 
-        public Course[] ReplaceCourses(CourseDto[] coursesDtos)
+        public ICollection<Course> ReplaceCourses(CourseDto[] coursesDtos)
         {
             DeleteCourses();
 
@@ -66,7 +66,7 @@
             return context.Courses.AsNoTracking().ToArray();
         }
 
-        public Course ReplaceCourse(int id, CourseDto courseDto)
+        public ICollection<Course> ReplaceCourse(int id, CourseDto courseDto)
         {
             var course = context.Courses.Find(id);
 
@@ -76,16 +76,18 @@
             
             //do we want ids?
             //return ByName(course.Name);
-            return course;
+            return context.Courses.ToList();
         }
 
-        public void DeleteCourse(int id)
+        public ICollection<Course> DeleteCourse(int id)
         {
             var courseToDelete = context.Courses.Find(id);
 
             context.Courses.Remove(courseToDelete);
 
             context.SaveChanges();
+
+            return context.Courses.ToList();
         }
 
         public void DeleteCourses()

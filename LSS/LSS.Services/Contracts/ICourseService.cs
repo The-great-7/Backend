@@ -2,20 +2,21 @@
 {
     using LSS.Data.Models;
     using LSS.DataModels;
+    using System.Collections.Generic;
 
     public interface ICourseService
     {
         Course CourseById(int id);
 
-        Course[] GetCourses();
+        ICollection<Course> GetCourses();
 
-        Course AddCourse(string name);
+        ICollection<Course> AddCourse(string name);
 
-        Course[] ReplaceCourses(CourseDto[] coursesDtos);
+        ICollection<Course> ReplaceCourses(CourseDto[] coursesDtos);
 
-        Course ReplaceCourse(int id, CourseDto courseDto);
+        ICollection<Course> ReplaceCourse(int id, CourseDto courseDto);
 
-        void DeleteCourse(int id);
+        ICollection<Course> DeleteCourse(int id);
 
         void DeleteCourses();
     }

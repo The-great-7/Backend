@@ -38,8 +38,8 @@
         public IActionResult Post([FromBody]CourseDto model)
         {
             string value = model.Name;
-            this.service.AddCourse(value);
-            return this.Ok();
+            var course = this.service.AddCourse(value);
+            return this.Ok(course);
         }
         
         // PUT: api/Courses/5
@@ -47,16 +47,16 @@
         public IActionResult Put(int id, [FromBody]CourseDto model)
         {
             CourseDto course = new CourseDto { Name = model.Name};
-            this.service.ReplaceCourse(id, course);
-            return this.Ok();
+            var courses = this.service.ReplaceCourse(id, course);
+            return this.Ok(courses);
         }
         
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            this.service.DeleteCourse(id);
-            return this.Ok();
+           var courses = this.service.DeleteCourse(id);
+            return this.Ok(courses);
         }
     }
 }

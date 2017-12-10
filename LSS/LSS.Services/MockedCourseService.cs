@@ -16,42 +16,32 @@ namespace LSS.Services
 
         public List<Course> Courses { get; set; }
 
-        public Course AddCourse(string name)
+        public ICollection<Course> GetCourses()
         {
-            int id = this.Courses.Count;
-            var course = new Course { Id = ++id, Name = name };
-            this.Courses.Add(course);
-            return course;
+            return this.Courses.ToArray();
         }
 
         public Course CourseById(int id)
         {
             return this.Courses.Find(x => x.Id == id);
         }
-
-        public void DeleteCourse(int id)
+        
+        public ICollection<Course> AddCourse(string name)
         {
-            this.Courses.RemoveAt(--id);
+            int id = this.Courses.Count;
+            var course = new Course { Id = ++id, Name = name };
+            this.Courses.Add(course);
+            return this.Courses;
         }
 
-        public void DeleteCourses()
-        {
-            this.Courses.Clear() ;
-        }
-
-        public Course[] GetCourses()
-        {
-            return this.Courses.ToArray();
-        }
-
-        public Course ReplaceCourse(int id, CourseDto courseDto)
+        public ICollection<Course> ReplaceCourse(int id, CourseDto courseDto)
         {
             var course = this.Courses.Find(x => x.Id == id);
             course.Name = courseDto.Name;
-            return course;
+            return this.Courses;
         }
 
-        public Course[] ReplaceCourses(CourseDto[] coursesDtos)
+        public ICollection<Course> ReplaceCourses(CourseDto[] coursesDtos)
         {
             List<Course> replacedCourses = new List<Course>();
 
@@ -62,6 +52,17 @@ namespace LSS.Services
                 replacedCourses.Add(currentCourse);
             }
             return replacedCourses.ToArray();
+        }
+
+        public ICollection<Course> DeleteCourse(int id)
+        {
+            this.Courses.RemoveAt(--id);
+            return this.Courses;
+        }
+
+        public void DeleteCourses()
+        {
+            this.Courses.Clear();
         }
 
         #region mocked course data
