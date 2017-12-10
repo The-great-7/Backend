@@ -1,8 +1,8 @@
 ﻿namespace LSS.Api
 {
     using AutoMapper;
-    using LSS.Api.Dtos;
     using LSS.Data.Models;
+    using LSS.DataModels;
 
     class AutoMapperProfile : Profile
     {

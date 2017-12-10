@@ -25,6 +25,7 @@ namespace LSS.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddScoped<ICourseService, MockedCourseService>();
         }
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -41,9 +42,7 @@ namespace LSS.Api
         {
             var serviceCollection = new ServiceCollection();
             
-            serviceCollection.AddDbContext<LSSDbContext>();
-
-            serviceCollection.AddTransient<ICourseService, CourseService>();
+            serviceCollection.AddDbContext<LSSDbContext>();            
             /*
             services go here
             */

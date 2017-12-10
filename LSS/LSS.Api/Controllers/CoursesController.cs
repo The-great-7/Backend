@@ -2,42 +2,61 @@
 {
     using System;
     using Microsoft.AspNetCore.Mvc;
+    using LSS.Services.Contracts;
+    using LSS.Data.Models;
+    using LSS.DataModels;
+    using LSS.Services;
 
     [Route("api/courses")]
     public class CoursesController : Controller
     {
+        private ICourseService service;
+        public CoursesController(ICourseService service)
+        {
+            this.service = service;
+        }
         // GET: api/Courses
         //TODO: This is testing setup. Remove it when the services are ready.
         [HttpGet]
         public IActionResult Get()
         {
             // TODO - Services work :) 
-            return null;
+            var courses = this.service.GetCourses();
+            return this.Ok(courses);
         }
 
         // GET: api/Courses/5
         [HttpGet("{id}", Name = "Get")]
         public IActionResult Get(int id)
         {
-            throw new NotImplementedException();
+            var course = service.CourseById(id);
+            return this.Ok(course);
         }
         
         // POST: api/Courses
         [HttpPost]
-        public void Post([FromBody]string value)
+        public IActionResult Post([FromBody]CourseDto model)
         {
+            string value = model.Name;
+            this.service.AddCourse(value);
+            return this.Ok();
         }
         
         // PUT: api/Courses/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public IActionResult Put(int id, [FromBody]CourseDto model)
         {
+            CourseDto course = new CourseDto { Name = model.Name};
+            this.service.ReplaceCourse(id, course);
+            return this.Ok();
         }
         
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            this.service.DeleteCourse(id);
+            return this.Ok();
         }
     }
 }
