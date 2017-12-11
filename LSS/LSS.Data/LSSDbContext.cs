@@ -17,6 +17,8 @@
 
         public DbSet<Student> Students { get; set; }
 
+        public DbSet<User> Users { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
             if (!builder.IsConfigured)
@@ -32,6 +34,7 @@
             builder.ApplyConfiguration(new StudentAssignmentConfiguration());
             builder.ApplyConfiguration(new StudentConfiguration());
             builder.ApplyConfiguration(new StudentCourseConfiguration());
+            builder.ApplyConfiguration(new UserConfiguration());
 
             base.OnModelCreating(builder);
         }

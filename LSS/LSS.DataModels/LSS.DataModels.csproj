@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LSS.Data.Models\LSS.Data.Models.csproj" />
+  </ItemGroup>
+
 </Project>
