@@ -2,6 +2,6 @@
 {
     public class Configuration
     {
-        public const string ServerAddress = "Server=.;Database=Support System;Integrated Security = True";
+        public const string ServerAddress = "Server=.;Database=LearningSupportSystem;Integrated Security=True";
     }
 }

@@ -6,9 +6,13 @@
 
     public class LSSDbContext : DbContext
     {
-        public LSSDbContext(DbContextOptions<LSSDbContext> options) 
+        public LSSDbContext()
+        {}
+
+        public LSSDbContext(DbContextOptions<LSSDbContext> options)
             : base(options)
         {
+            //Database.Migrate();
         }
 
         public DbSet<Assignment> Assignments { get; set; }
@@ -21,10 +25,7 @@
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            if (!builder.IsConfigured)
-            {
-                builder.UseSqlServer(Configuration.ServerAddress);
-            }
+            builder.UseSqlServer(Configuration.ServerAddress);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

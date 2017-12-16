@@ -39,14 +39,12 @@
 
         public ICollection<Course> AddCourse(string name)
         {
-            var courses = context.Courses;
-
             var course = new Course()
             {
                 Name = name
             };
 
-            courses.Add(course);
+            context.Courses.Add(course);
             context.SaveChanges();
             //do we want ids?
             //return ByName(name);

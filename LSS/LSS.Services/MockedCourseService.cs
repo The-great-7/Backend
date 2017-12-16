@@ -1,5 +1,4 @@
-﻿
-namespace LSS.Services
+﻿namespace LSS.Services
 {
     using LSS.Data.Models;
     using LSS.DataModels;
