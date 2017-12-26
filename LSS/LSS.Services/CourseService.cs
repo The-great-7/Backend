@@ -1,5 +1,6 @@
 ﻿namespace LSS.Services
 {
+    using System;
     using System.Linq;
     using LSS.Data;
     using LSS.Data.Models;
@@ -25,6 +26,11 @@
         {
             var course = context.Courses.Find(id);
 
+            if (course == null)
+            {
+                throw new ArgumentException("A course with the given Id does not exist");
+            }
+
             context.Entry(course).State = EntityState.Detached;
 
             return course;
@@ -39,6 +45,12 @@
 
         public ICollection<Course> AddCourse(string name)
         {
+            var alreadyExists = ByName(name);
+            if (alreadyExists != null)
+            {
+                throw new InvalidOperationException("A course with the given name already exists.");
+            }
+
             var course = new Course()
             {
                 Name = name
@@ -46,9 +58,8 @@
 
             context.Courses.Add(course);
             context.SaveChanges();
-            //do we want ids?
-            //return ByName(name);
-            return context.Courses.ToList();
+
+            return context.Courses.AsNoTracking().ToList();
         }
 
         public ICollection<Course> ReplaceCourses(CourseDto[] coursesDtos)
@@ -68,18 +79,26 @@
         {
             var course = context.Courses.Find(id);
 
+            if (course == null)
+            {
+                throw new ArgumentException("A course with the given Id does not exist.");
+            }
+
             course.Name = courseDto.Name;
             
             context.SaveChanges();
-            
-            //do we want ids?
-            //return ByName(course.Name);
-            return context.Courses.ToList();
+
+            return context.Courses.AsNoTracking().ToList();
         }
 
         public ICollection<Course> DeleteCourse(int id)
         {
             var courseToDelete = context.Courses.Find(id);
+
+            if (courseToDelete == null)
+            {
+                throw new ArgumentException("A course with the given Id does not exist");
+            }
 
             context.Courses.Remove(courseToDelete);
 
@@ -98,7 +117,7 @@
         private Course ByName(string name)
         {
             var course = context.Courses.SingleOrDefault(c => c.Name == name);
-            context.Entry(course).State = EntityState.Detached;
+            //context.Entry(course).State = EntityState.Detached;
 
             return course;
         }

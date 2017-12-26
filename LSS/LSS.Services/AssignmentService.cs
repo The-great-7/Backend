@@ -1,5 +1,6 @@
 ﻿namespace LSS.Services
 {
+    using System;
     using System.Linq;
     using AutoMapper;
     using LSS.Data;
@@ -25,7 +26,7 @@
             return assignment;
         }
 
-        public Assignment[] GetAssignment()
+        public Assignment[] GetAssignments()
         {
             var assignments = context.Assignments.AsNoTracking().ToArray();
 
@@ -36,6 +37,11 @@
         {
             var assignment = Mapper.Map<Assignment>(assignmentDto);
 
+            if (context.Assignments.Any(a => a.Name == assignment.Name))
+            {
+                throw new InvalidOperationException("An Assignment with the same name already exists.");
+            }
+
             context.Assignments.Add(assignment);
 
             return assignment;
@@ -43,7 +49,7 @@
 
         public Assignment[] ReplaceAssignments(AssignmentDto[] assignmentsDtos)
         {
-            context.Assignments.Delete();
+            DeleteAssignments();
 
             var assignments = Mapper.Map<Assignment[]>(assignmentsDtos);
 
@@ -51,12 +57,14 @@
 
             context.SaveChanges();
 
-            return assignments;
+            return context.Assignments.AsNoTracking().ToArray();
         }
 
         public Assignment ReplaceAssignment(int id, AssignmentDto assignmentDto)
         {
             var assignment = context.Assignments.Find(id);
+
+            ValidateAssignment(assignment);
 
             assignment.DueDate = assignmentDto.DueDate;
             assignment.Name = assignment.Name;
@@ -65,10 +73,12 @@
 
             return assignment;
         }
-
+        
         public void DeleteAssignment(int id)
         {
             var assignment = context.Assignments.Find(id);
+
+            ValidateAssignment(assignment);
 
             context.Remove(assignment);
 
@@ -79,6 +89,14 @@
         {
             context.Assignments.Delete();
             context.SaveChanges();
+        }
+
+        private static void ValidateAssignment(Assignment assignment)
+        {
+            if (assignment == null)
+            {
+                throw new ArgumentException("An assignment with the given Id does not exist");
+            }
         }
     }
 }

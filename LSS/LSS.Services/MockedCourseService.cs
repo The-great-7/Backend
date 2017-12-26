@@ -1,5 +1,6 @@
 ﻿namespace LSS.Services
 {
+    using AutoMapper;
     using LSS.Data.Models;
     using LSS.DataModels;
     using LSS.Services.Contracts;
@@ -42,15 +43,13 @@
 
         public ICollection<Course> ReplaceCourses(CourseDto[] coursesDtos)
         {
-            List<Course> replacedCourses = new List<Course>();
+            DeleteCourses();
 
-            foreach (var course in coursesDtos)
-            {
-                var currentCourse = this.Courses.Find(x => x.Id == course.Id);
-                currentCourse.Name = course.Name;
-                replacedCourses.Add(currentCourse);
-            }
-            return replacedCourses.ToArray();
+            var courses = Mapper.Map<List<Course>>(coursesDtos);
+
+            this.Courses = courses;
+
+            return courses.ToArray();
         }
 
         public ICollection<Course> DeleteCourse(int id)

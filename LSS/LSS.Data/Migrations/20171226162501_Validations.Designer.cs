@@ -11,9 +11,10 @@ using System;
 namespace LSS.Data.Migrations
 {
     [DbContext(typeof(LSSDbContext))]
-    partial class LSSDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171226162501_Validations")]
+    partial class Validations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

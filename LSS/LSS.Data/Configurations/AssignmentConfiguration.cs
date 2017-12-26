@@ -11,7 +11,7 @@
         {
             builder.HasKey(a => a.Id);
 
-            builder.Property(n => n.Name)
+            builder.Property(a => a.Name)
                 .HasMaxLength(70)
                 .IsRequired(true);
 
@@ -19,9 +19,11 @@
                 .WithMany(a => a.Assignments)
                 .HasForeignKey(c => c.CourseId);
 
-            builder.Property(d => d.DueDate)
+            builder.Property(a => a.DueDate)
                 .HasDefaultValue(DateTime.Now.AddDays(7))
                 .IsRequired();
+
+            builder.HasIndex(a => a.Name).IsUnique();
         }
     }
 }

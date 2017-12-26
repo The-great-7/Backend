@@ -7,7 +7,7 @@
     {
         Assignment AssignmentById(int id);
 
-        Assignment[] GetAssignment();
+        Assignment[] GetAssignments();
 
         Assignment AddAssignment(AssignmentDto assignmentDto);
 

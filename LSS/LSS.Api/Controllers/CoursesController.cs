@@ -11,6 +11,7 @@
     public class CoursesController : Controller
     {
         private ICourseService service;
+
         public CoursesController(ICourseService service)
         {
             this.service = service;
@@ -29,26 +30,47 @@
         [HttpGet("{id}", Name = "Get")]
         public IActionResult Get(int id)
         {
-            var course = service.CourseById(id);
-            return this.Ok(course);
+            try
+            {
+                var course = service.CourseById(id);
+                return this.Ok(course);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
         }
         
         // POST: api/Courses
         [HttpPost]
         public IActionResult Post([FromBody]CourseDto model)
         {
-            string value = model.Name;
-            var course = this.service.AddCourse(value);
-            return this.Ok(course);
+            try
+            {
+                string value = model.Name;
+                var course = this.service.AddCourse(value);
+                return this.Ok(course);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
         }
         
         // PUT: api/Courses/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]CourseDto model)
         {
-            CourseDto course = new CourseDto { Name = model.Name};
-            var courses = this.service.ReplaceCourse(id, course);
-            return this.Ok(courses);
+            try
+            {
+                CourseDto course = new CourseDto { Name = model.Name };
+                var courses = this.service.ReplaceCourse(id, course);
+                return this.Ok(courses);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
         }
 
         // DELETE: api/ApiWithActions/
@@ -63,8 +85,15 @@
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-           var courses = this.service.DeleteCourse(id);
-            return this.Ok(courses);
+            try
+            {
+                var courses = this.service.DeleteCourse(id);
+                return this.Ok(courses);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
         }
     }
 }

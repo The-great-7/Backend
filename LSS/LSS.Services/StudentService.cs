@@ -1,5 +1,6 @@
 ﻿namespace LSS.Services
 {
+    using System;
     using System.Linq;
     using LSS.DataModels;
     using LSS.Data;
@@ -21,7 +22,7 @@
         public Student StudentById(int id)
         {
             var student = context.Students.Find(id);
-
+            
             return student;
         }
 
@@ -36,19 +37,19 @@
         {
             var student = Mapper.Map<Student>(studentDto);
 
+            CheckIfStudentAlreadyExists(student);
+
             context.Add(student);
 
             context.SaveChanges();
 
-            //do we want ids?
-            //var studentWithId = ByName(student.FirstName, student.MiddleName, student.LastName);
-
+            context.Entry(student).State = EntityState.Detached;
             return student;
         }
 
         public Student[] ReplaceStudents(StudentDto[] studentsDtos)
         {
-            context.Students.Delete();
+            DeleteStudents();
 
             var students = Mapper.Map<Student[]>(studentsDtos);
 
@@ -56,13 +57,14 @@
 
             context.SaveChanges();
 
-            //do we want ids?
             return students;
         }
 
         public Student ReplaceStudent(int id, StudentDto studentDto)
         {
             var student = context.Students.Find(id);
+
+            ValidateStudent(student);
 
             student.FirstName = studentDto.FirstName;
             student.MiddleName = studentDto.MiddleName;
@@ -79,6 +81,8 @@
         public void DeleteStudent(int id)
         {
             var student = context.Students.Find(id);
+
+            ValidateStudent(student);
 
             context.Students.Remove(student);
 
@@ -100,6 +104,23 @@
                 s.LastName == lastName);
 
             return student;
+        }
+
+        private static void ValidateStudent(Student student)
+        {
+            if (student == null)
+            {
+                throw new ArgumentException("A student with the provided Id does not exist");
+            }
+        }
+
+        private void CheckIfStudentAlreadyExists(Student student)
+        {
+            if (context.Students.Any(s => s.FirstName == student.FirstName && s.MiddleName == student.MiddleName &&
+                                          s.LastName == student.LastName))
+            {
+                throw new InvalidOperationException("A student with the same name already exists");
+            }
         }
     }
 }

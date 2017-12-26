@@ -32,6 +32,8 @@
 
             builder.Property(s => s.Grade)
                 .IsRequired(false);
+
+            builder.HasIndex(s => new {s.FirstName, s.MiddleName, s.LastName});
         }
     }
 }
