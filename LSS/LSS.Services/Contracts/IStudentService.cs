@@ -2,6 +2,7 @@
 {
     using Data.Models;
     using DataModels;
+    using System.Collections.Generic;
 
     public interface IStudentService
     {
@@ -15,7 +16,7 @@
 
         Student ReplaceStudent(int id, StudentDto studentDto);
 
-        void DeleteStudent(int id);
+        ICollection<Student> DeleteStudent(int id);
 
         void DeleteStudents();
     }

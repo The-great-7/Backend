@@ -7,6 +7,7 @@
     using DataModels;
     using Microsoft.EntityFrameworkCore;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using Z.EntityFramework.Plus;
 
@@ -76,7 +77,7 @@
             return student;
         }
 
-        public void DeleteStudent(int id)
+        public ICollection<Student> DeleteStudent(int id)
         {
             var student = context.Students.Find(id);
 
@@ -85,6 +86,8 @@
             this.context.Students.Remove(student);
 
             this.context.SaveChanges();
+
+            return this.context.Students.ToList();
         }
 
         public void DeleteStudents()
