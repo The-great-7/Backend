@@ -1,14 +1,16 @@
 ﻿namespace LSS.Api
 {
-    using System;
-    using LSS.Data;
-    using LSS.Services;
-    using LSS.Services.Contracts;
+    using AutoMapper;
+    using Data;
+    using LSS.Api.Extensions;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using AutoMapper;
+    using Services;
+    using Services.Contracts;
+    using System;
 
     public class Startup
     {
@@ -23,10 +25,18 @@
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
             services.AddScoped<ICourseService, CourseService>();
+
             services.AddDbContext<LSSDbContext>();
+
+            services.AddDomainServices();
+
+            services.AddMvc(options =>
+            {
+                options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+            });
         }
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -36,7 +46,6 @@
             
             app.UseMvc();
         }
-
 
         private IServiceProvider ConfigureServices()
         {
