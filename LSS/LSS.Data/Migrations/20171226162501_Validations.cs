@@ -1,9 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-using System.Collections.Generic;
-
-namespace LSS.Data.Migrations
+﻿namespace LSS.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+    using System;
+
     public partial class Validations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

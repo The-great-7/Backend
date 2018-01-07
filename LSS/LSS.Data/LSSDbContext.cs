@@ -1,8 +1,8 @@
 ﻿namespace LSS.Data
 {
-    using Models;
+    using Configurations;
     using Microsoft.EntityFrameworkCore;
-    using LSS.Data.Configurations;
+    using Models;
 
     public class LSSDbContext : DbContext
     {

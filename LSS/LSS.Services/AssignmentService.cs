@@ -1,13 +1,13 @@
 ﻿namespace LSS.Services
 {
+    using AutoMapper;
+    using Contracts;
+    using Data;
+    using Data.Models;
+    using DataModels;
+    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Linq;
-    using AutoMapper;
-    using LSS.Data;
-    using LSS.Data.Models;
-    using LSS.DataModels;
-    using Contracts;
-    using Microsoft.EntityFrameworkCore;
     using Z.EntityFramework.Plus;
 
     public class AssignmentService : IAssignmentService
@@ -28,7 +28,7 @@
 
         public Assignment[] GetAssignments()
         {
-            var assignments = context.Assignments.AsNoTracking().ToArray();
+            var assignments = this.context.Assignments.AsNoTracking().ToArray();
 
             return assignments;
         }
@@ -42,20 +42,20 @@
                 throw new InvalidOperationException("An Assignment with the same name already exists.");
             }
 
-            context.Assignments.Add(assignment);
+            this.context.Assignments.Add(assignment);
 
             return assignment;
         }
 
         public Assignment[] ReplaceAssignments(AssignmentDto[] assignmentsDtos)
         {
-            DeleteAssignments();
+            this.DeleteAssignments();
 
             var assignments = Mapper.Map<Assignment[]>(assignmentsDtos);
 
-            context.Assignments.AddRange(assignments);
+            this.context.Assignments.AddRange(assignments);
 
-            context.SaveChanges();
+            this.context.SaveChanges();
 
             return context.Assignments.AsNoTracking().ToArray();
         }
@@ -69,7 +69,7 @@
             assignment.DueDate = assignmentDto.DueDate;
             assignment.Name = assignment.Name;
 
-            context.SaveChanges();
+            this.context.SaveChanges();
 
             return assignment;
         }
@@ -80,15 +80,15 @@
 
             ValidateAssignment(assignment);
 
-            context.Remove(assignment);
+            this.context.Remove(assignment);
 
-            context.SaveChanges();
+            this.context.SaveChanges();
         }
 
         public void DeleteAssignments()
         {
-            context.Assignments.Delete();
-            context.SaveChanges();
+            this.context.Assignments.Delete();
+            this.context.SaveChanges();
         }
 
         private static void ValidateAssignment(Assignment assignment)

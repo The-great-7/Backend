@@ -1,11 +1,9 @@
 ﻿namespace LSS.Api.Controllers
 {
-    using System;
+    using DataModels;
     using Microsoft.AspNetCore.Mvc;
-    using LSS.Services.Contracts;
-    using LSS.Data.Models;
-    using LSS.DataModels;
-    using LSS.Services;
+    using Services.Contracts;
+    using System;
 
     [Route("api/courses")]
     public class CoursesController : Controller
@@ -35,9 +33,9 @@
                 var course = service.CourseById(id);
                 return this.Ok(course);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest();
+                return this.BadRequest();
             }
         }
         
@@ -47,13 +45,14 @@
         {
             try
             {
-                string value = model.Name;
+                var value = model.Name;
                 var course = this.service.AddCourse(value);
+
                 return this.Ok(course);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest();
+                return this.BadRequest();
             }
         }
         
@@ -63,13 +62,14 @@
         {
             try
             {
-                CourseDto course = new CourseDto { Name = model.Name };
+                var course = new CourseDto { Name = model.Name };
                 var courses = this.service.ReplaceCourse(id, course);
+
                 return this.Ok(courses);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest();
+                return this.BadRequest();
             }
         }
 
@@ -90,9 +90,9 @@
                 var courses = this.service.DeleteCourse(id);
                 return this.Ok(courses);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest();
+                return this.BadRequest();
             }
         }
     }

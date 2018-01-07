@@ -1,13 +1,13 @@
 ﻿namespace LSS.Services
 {
+    using AutoMapper;
+    using Contracts;
+    using Data;
+    using Data.Models;
+    using DataModels;
+    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Linq;
-    using LSS.DataModels;
-    using LSS.Data;
-    using LSS.Data.Models;
-    using Contracts;
-    using Microsoft.EntityFrameworkCore;
-    using AutoMapper;
     using Z.EntityFramework.Plus;
 
     public class StudentService : IStudentService
@@ -39,11 +39,10 @@
 
             CheckIfStudentAlreadyExists(student);
 
-            context.Add(student);
+            this.context.Add(student);
+            this.context.SaveChanges();
+            this.context.Entry(student).State = EntityState.Detached;
 
-            context.SaveChanges();
-
-            context.Entry(student).State = EntityState.Detached;
             return student;
         }
 
@@ -53,9 +52,8 @@
 
             var students = Mapper.Map<Student[]>(studentsDtos);
 
-            context.Students.AddRange(students);
-
-            context.SaveChanges();
+            this.context.Students.AddRange(students);
+            this.context.SaveChanges();
 
             return students;
         }
@@ -73,7 +71,7 @@
             student.Grade = studentDto.Grade;
             student.PhoneNumber = studentDto.PhoneNumber;
 
-            context.SaveChanges();
+            this.context.SaveChanges();
 
             return student;
         }
@@ -84,16 +82,15 @@
 
             ValidateStudent(student);
 
-            context.Students.Remove(student);
+            this.context.Students.Remove(student);
 
-            context.SaveChanges();
+            this.context.SaveChanges();
         }
 
         public void DeleteStudents()
         {
-            context.Students.Delete();
-
-            context.SaveChanges();
+            this.context.Students.Delete();
+            this.context.SaveChanges();
         }
 
         private Student ByName(string firstName, string middleName, string lastName)

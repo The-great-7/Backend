@@ -1,7 +1,7 @@
 ﻿namespace LSS.Services.Contracts
 {
-    using LSS.DataModels;
-    using LSS.Data.Models;
+    using Data.Models;
+    using DataModels;
 
     public interface IAssignmentService
     {

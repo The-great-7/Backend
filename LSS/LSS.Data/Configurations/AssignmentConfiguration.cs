@@ -2,8 +2,8 @@
 {
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
-    using System;
     using Models;
+    using System;
 
     public class AssignmentConfiguration : IEntityTypeConfiguration<Assignment>
     {

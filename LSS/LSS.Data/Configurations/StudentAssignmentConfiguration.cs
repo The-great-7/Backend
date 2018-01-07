@@ -1,9 +1,8 @@
 ﻿namespace LSS.Data.Configurations
 {
-    using System;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
-    using LSS.Data.Models;
+    using Models;
 
     public class StudentAssignmentConfiguration : IEntityTypeConfiguration<StudentAssignment>
     {

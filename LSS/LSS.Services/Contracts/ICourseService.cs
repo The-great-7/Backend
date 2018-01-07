@@ -1,7 +1,7 @@
 ﻿namespace LSS.Services.Contracts
 {
-    using LSS.Data.Models;
-    using LSS.DataModels;
+    using Data.Models;
+    using DataModels;
     using System.Collections.Generic;
 
     public interface ICourseService

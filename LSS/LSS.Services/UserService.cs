@@ -1,9 +1,9 @@
 ﻿namespace LSS.Services
 {
-    using LSS.Data;
-    using LSS.Data.Models;
-    using LSS.DataModels;
-    using LSS.Services.Contracts;
+    using Contracts;
+    using Data;
+    using Data.Models;
+    using DataModels;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Data.SqlClient;
@@ -24,20 +24,24 @@
             {
                 return "You need to login first!";
             }
+
             if (passwordDetails.Length != 3)
             {
                 return "Invalid arguments!";
             }
-            string password = passwordDetails[0];
-            string repeatedPassword = passwordDetails[1];
-            string newPassword = passwordDetails[2];
+
+            var password = passwordDetails[0];
+            var repeatedPassword = passwordDetails[1];
+            var newPassword = passwordDetails[2];
 
             if (password != repeatedPassword)
             {
                 return "Passwords do not match!";
             }
-            User user = LoggedUser.User;
+
+            var user = LoggedUser.User;
             user.Password = newPassword;
+
             if (!IsValid(user))
             {
                 return "Password length is between 3 and 30!";
@@ -67,7 +71,7 @@
                 return "You need to login first!";
             }
 
-            int id = LoggedUser.User.Id;
+            var id = LoggedUser.User.Id;
             LogOut();
 
             UpdateUser("IsDeleted",id,"1");
@@ -115,7 +119,7 @@
                 return "Passwords do not match!";
             }
 
-            User user = new User()
+            var user = new User()
             {
                 Username = username,
                 Password = password
@@ -126,7 +130,8 @@
                 return "Invalid username or password!";
             }
 
-            context.Users.Add(user);
+            this.context.Users.Add(user);
+
             return $"User {user.Username} created successfully!";
         }
 
@@ -137,7 +142,7 @@
             {
                 connection.Open();
 
-                string query = "UPDATE Users SET @Column = @newValue WHERE Id = @Id";
+                var query = "UPDATE Users SET @Column = @newValue WHERE Id = @Id";
                 var command = new SqlCommand(query);
 
                 command.Parameters.AddWithValue("@Column", columnToAlter);
@@ -154,6 +159,7 @@
             {
                 return false;
             }
+
             return true;
         }
 
@@ -163,7 +169,8 @@
             var context = new ValidationContext(obj);
             var validateResults = new List<ValidationResult>();
 
-            bool isValid = Validator.TryValidateObject(obj, context, validateResults, true);
+            var isValid = Validator.TryValidateObject(obj, context, validateResults, true);
+
             return isValid;
         }
     }

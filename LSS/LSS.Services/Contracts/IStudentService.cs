@@ -1,7 +1,7 @@
 ﻿namespace LSS.Services.Contracts
 {
-    using LSS.Data.Models;
-    using LSS.DataModels;
+    using Data.Models;
+    using DataModels;
 
     public interface IStudentService
     {

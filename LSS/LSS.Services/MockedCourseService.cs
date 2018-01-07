@@ -1,9 +1,9 @@
 ﻿namespace LSS.Services
 {
     using AutoMapper;
-    using LSS.Data.Models;
-    using LSS.DataModels;
-    using LSS.Services.Contracts;
+    using Contracts;
+    using Data.Models;
+    using DataModels;
     using System.Collections.Generic;
 
     public class MockedCourseService : ICourseService
@@ -28,8 +28,9 @@
         
         public ICollection<Course> AddCourse(string name)
         {
-            int id = this.Courses.Count;
+            var id = this.Courses.Count;
             var course = new Course { Id = ++id, Name = name };
+
             this.Courses.Add(course);
             return this.Courses;
         }
@@ -38,6 +39,7 @@
         {
             var course = this.Courses.Find(x => x.Id == id);
             course.Name = courseDto.Name;
+
             return this.Courses;
         }
 

@@ -1,6 +1,7 @@
 ﻿namespace LSS.Api.Extensions
 {
     using Microsoft.Extensions.DependencyInjection;
+    using Services;
     using System.Linq;
     using System.Reflection;
 

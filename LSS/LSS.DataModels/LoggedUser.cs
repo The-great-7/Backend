@@ -1,7 +1,6 @@
 ﻿namespace LSS.DataModels
 {
-    using LSS.Data.Models;
-    using System.ComponentModel.DataAnnotations;
+    using Data.Models;
 
     public class LoggedUser
     {

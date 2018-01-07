@@ -2,7 +2,7 @@
 {
     using AutoMapper;
     using Data;
-    using LSS.Api.Extensions;
+    using Extensions;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
@@ -17,8 +17,6 @@
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
-
         }
 
         public IConfiguration Configuration { get; }

@@ -6,7 +6,7 @@ namespace LSS.Api.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return this.View();
         }
     }
 }

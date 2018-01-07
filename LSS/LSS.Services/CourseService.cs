@@ -1,15 +1,15 @@
 ﻿namespace LSS.Services
 {
-    using System;
-    using System.Linq;
-    using LSS.Data;
-    using LSS.Data.Models;
-    using Contracts;
-    using Microsoft.EntityFrameworkCore;
-    using Z.EntityFramework.Plus;
-    using LSS.DataModels;
     using AutoMapper;
+    using Contracts;
+    using Data;
+    using Data.Models;
+    using DataModels;
+    using Microsoft.EntityFrameworkCore;
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using Z.EntityFramework.Plus;
 
     public class CourseService : ICourseService
     {
@@ -31,7 +31,7 @@
                 throw new ArgumentException("A course with the given Id does not exist");
             }
 
-            context.Entry(course).State = EntityState.Detached;
+            this.context.Entry(course).State = EntityState.Detached;
 
             return course;
         }
@@ -56,8 +56,8 @@
                 Name = name
             };
 
-            context.Courses.Add(course);
-            context.SaveChanges();
+            this.context.Courses.Add(course);
+            this.context.SaveChanges();
 
             return context.Courses.AsNoTracking().ToList();
         }
@@ -68,9 +68,9 @@
 
             var courses = Mapper.Map<Course[]>(coursesDtos);
 
-            context.AddRange(courses);
+            this.context.AddRange(courses);
 
-            context.SaveChanges();
+            this.context.SaveChanges();
 
             return context.Courses.AsNoTracking().ToArray();
         }
@@ -85,8 +85,8 @@
             }
 
             course.Name = courseDto.Name;
-            
-            context.SaveChanges();
+
+            this.context.SaveChanges();
 
             return context.Courses.AsNoTracking().ToList();
         }
@@ -100,18 +100,18 @@
                 throw new ArgumentException("A course with the given Id does not exist");
             }
 
-            context.Courses.Remove(courseToDelete);
+            this.context.Courses.Remove(courseToDelete);
 
-            context.SaveChanges();
+            this.context.SaveChanges();
 
             return context.Courses.ToList();
         }
 
         public void DeleteCourses()
         {
-            context.Courses.Delete();
+            this.context.Courses.Delete();
 
-            context.SaveChanges();
+            this.context.SaveChanges();
         }
 
         private Course ByName(string name)
