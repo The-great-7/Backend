@@ -20,18 +20,16 @@
         public IActionResult Get()
         {
             var students = this.students.All();
-
             return this.Ok(students);
         }
 
         // GET: api/students/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet]
         public IActionResult Get(int id)
         {
             try
             {
                 var student = students.ById(id);
-
                 return this.Ok(student);
             }
             catch (Exception)
@@ -47,7 +45,6 @@
             try
             {
                 var student = this.students.Add(model);
-
                 return this.Ok(student);
             }
             catch (Exception)
@@ -87,7 +84,6 @@
         public IActionResult Delete()
         {
             this.students.DeleteAll();
-
             return this.Ok();
         }
 
@@ -98,7 +94,6 @@
             try
             {
                 var students = this.students.Delete(id);
-
                 return this.Ok(students);
             }
             catch (Exception)

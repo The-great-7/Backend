@@ -5,7 +5,6 @@
     using Services.Contracts;
     using System;
 
-    [Route("api/courses")]
     public class CoursesController : Controller
     {
         private ICourseService courses;
@@ -21,18 +20,16 @@
         public IActionResult Get()
         {
             var courses = this.courses.All();
-
             return this.Ok(courses);
         }
 
         // GET: api/courses/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet]
         public IActionResult Get(int id)
         {
             try
             {
                 var course = courses.ById(id);
-
                 return this.Ok(course);
             }
             catch (Exception)
@@ -48,7 +45,6 @@
             try
             {
                 var value = model.Name;
-
                 var course = this.courses.Add(value);
 
                 return this.Ok(course);
@@ -66,7 +62,6 @@
             try
             {
                 var course = new CourseDto { Name = model.Name };
-
                 var courses = this.courses.Replace(id, course);
 
                 return this.Ok(courses);
@@ -93,7 +88,6 @@
             try
             {
                 var courses = this.courses.Delete(id);
-
                 return this.Ok(courses);
             }
             catch (Exception)
