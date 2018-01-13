@@ -8,10 +8,8 @@
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.HasAlternateKey(u => u.Username);
-
-            builder.Property(d => d.IsDeleted)
-                .HasDefaultValue(false);
+            builder
+                .HasAlternateKey(u => u.Username);
         }
     }
 }

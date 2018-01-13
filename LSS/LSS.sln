@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LSS.Data", "LSS.Data\LSS.Da
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LSS.DataModels", "LSS.DataModels\LSS.DataModels.csproj", "{DA707EDF-83C8-430C-8BB5-5216F5D13F57}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSS.Core", "LSS.Core\LSS.Core.csproj", "{CEA47E6B-54EA-455A-A966-C380906B9401}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{DA707EDF-83C8-430C-8BB5-5216F5D13F57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA707EDF-83C8-430C-8BB5-5216F5D13F57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA707EDF-83C8-430C-8BB5-5216F5D13F57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEA47E6B-54EA-455A-A966-C380906B9401}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEA47E6B-54EA-455A-A966-C380906B9401}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEA47E6B-54EA-455A-A966-C380906B9401}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEA47E6B-54EA-455A-A966-C380906B9401}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

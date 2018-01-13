@@ -8,15 +8,18 @@
     {
         public void Configure(EntityTypeBuilder<StudentAssignment> builder)
         {
-            builder.HasKey(s => new { s.AssignmentId,s.StudentId});
+            builder.
+                HasKey(s => new { s.AssignmentId, s.StudentId });
             
-            builder.HasOne(s => s.Student)
+            builder
+                .HasOne(sa => sa.Student)
                 .WithMany(s => s.Assignments)
-                .HasForeignKey(s => s.StudentId);
+                .HasForeignKey(sa => sa.StudentId);
 
-            builder.HasOne(a => a.Assignment)
+            builder
+                .HasOne(sa => sa.Assignment)
                 .WithMany(s => s.Students)
-                .HasForeignKey(a => a.AssignmentId);
+                .HasForeignKey(sa => sa.AssignmentId);
         }
     }
 }
