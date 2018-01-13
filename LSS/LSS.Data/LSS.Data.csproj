@@ -8,8 +8,4 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\LSS.Data.Models\LSS.Data.Models.csproj" />
-  </ItemGroup>
-
 </Project>

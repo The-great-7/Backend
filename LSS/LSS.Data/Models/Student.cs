@@ -18,7 +18,8 @@
 
         public decimal? Grade { get; set; }
 
-        public ICollection<StudentCourse> StudentCourses { get; set; } = new HashSet<StudentCourse>();
-        public ICollection<StudentAssignment> StudentAssignments { get; set; } = new HashSet<StudentAssignment>();
+        public ICollection<StudentCourse> Courses { get; set; } = new HashSet<StudentCourse>();
+
+        public ICollection<StudentAssignment> Assignments { get; set; } = new HashSet<StudentAssignment>();
     }
 }

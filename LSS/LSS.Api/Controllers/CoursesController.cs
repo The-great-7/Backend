@@ -8,29 +8,31 @@
     [Route("api/courses")]
     public class CoursesController : Controller
     {
-        private ICourseService service;
+        private ICourseService courses;
 
-        public CoursesController(ICourseService service)
+        public CoursesController(ICourseService courses)
         {
-            this.service = service;
+            this.courses = courses;
         }
 
-        // GET: api/Courses
+        // GET: api/courses
         //TODO: This is testing setup. Remove it when the services are ready.
         [HttpGet]
         public IActionResult Get()
         {
-            var courses = this.service.GetCourses();
+            var courses = this.courses.All();
+
             return this.Ok(courses);
         }
 
-        // GET: api/Courses/5
+        // GET: api/courses/5
         [HttpGet("{id}", Name = "Get")]
         public IActionResult Get(int id)
         {
             try
             {
-                var course = service.CourseById(id);
+                var course = courses.ById(id);
+
                 return this.Ok(course);
             }
             catch (Exception)
@@ -39,14 +41,15 @@
             }
         }
         
-        // POST: api/Courses
+        // POST: api/courses
         [HttpPost]
         public IActionResult Post([FromBody]CourseDto model)
         {
             try
             {
                 var value = model.Name;
-                var course = this.service.AddCourse(value);
+
+                var course = this.courses.Add(value);
 
                 return this.Ok(course);
             }
@@ -56,14 +59,15 @@
             }
         }
         
-        // PUT: api/Courses/5
+        // PUT: api/courses/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]CourseDto model)
         {
             try
             {
                 var course = new CourseDto { Name = model.Name };
-                var courses = this.service.ReplaceCourse(id, course);
+
+                var courses = this.courses.Replace(id, course);
 
                 return this.Ok(courses);
             }
@@ -77,7 +81,8 @@
         [HttpDelete]
         public IActionResult Delete()
         {
-            this.service.DeleteCourses();
+            this.courses.DeleteAll();
+
             return this.Ok();
         }
 
@@ -87,7 +92,8 @@
         {
             try
             {
-                var courses = this.service.DeleteCourse(id);
+                var courses = this.courses.Delete(id);
+
                 return this.Ok(courses);
             }
             catch (Exception)

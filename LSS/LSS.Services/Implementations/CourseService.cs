@@ -1,4 +1,4 @@
-﻿namespace LSS.Services
+﻿namespace LSS.Services.Implementations
 {
     using AutoMapper;
     using Contracts;
@@ -13,39 +13,40 @@
 
     public class CourseService : ICourseService
     {
-        private readonly LSSDbContext context;
+        private readonly LSSDbContext db;
 
         public CourseService(){}
 
-        public CourseService(LSSDbContext context)
+        public CourseService(LSSDbContext db)
         {
-            this.context = context;
+            this.db = db;
         }
 
-        public Course CourseById(int id)
+        public Course ById(int id)
         {
-            var course = context.Courses.Find(id);
+            var course = db.Courses.Find(id);
 
             if (course == null)
             {
                 throw new ArgumentException("A course with the given Id does not exist");
             }
 
-            this.context.Entry(course).State = EntityState.Detached;
+            this.db.Entry(course).State = EntityState.Detached;
 
             return course;
         }
 
-        public ICollection<Course> GetCourses()
+        public IEnumerable<Course> All()
         {
-            var courses = context.Courses.AsNoTracking().ToArray();
+            var courses = db.Courses.AsNoTracking().ToArray();
 
             return courses;
         }
 
-        public ICollection<Course> AddCourse(string name)
+        public IEnumerable<Course> Add(string name)
         {
             var alreadyExists = ByName(name);
+
             if (alreadyExists != null)
             {
                 throw new InvalidOperationException("A course with the given name already exists.");
@@ -56,28 +57,28 @@
                 Name = name
             };
 
-            this.context.Courses.Add(course);
-            this.context.SaveChanges();
+            this.db.Courses.Add(course);
+            this.db.SaveChanges();
 
-            return context.Courses.AsNoTracking().ToList();
+            return db.Courses.AsNoTracking().ToList();
         }
 
-        public ICollection<Course> ReplaceCourses(CourseDto[] coursesDtos)
+        public IEnumerable<Course> Replace(CourseDto[] coursesDtos)
         {
-            DeleteCourses();
+            DeleteAll();
 
             var courses = Mapper.Map<Course[]>(coursesDtos);
 
-            this.context.AddRange(courses);
+            this.db.AddRange(courses);
 
-            this.context.SaveChanges();
+            this.db.SaveChanges();
 
-            return context.Courses.AsNoTracking().ToArray();
+            return db.Courses.AsNoTracking().ToArray();
         }
 
-        public ICollection<Course> ReplaceCourse(int id, CourseDto courseDto)
+        public IEnumerable<Course> Replace(int id, CourseDto courseDto)
         {
-            var course = context.Courses.Find(id);
+            var course = db.Courses.Find(id);
 
             if (course == null)
             {
@@ -86,37 +87,37 @@
 
             course.Name = courseDto.Name;
 
-            this.context.SaveChanges();
+            this.db.SaveChanges();
 
-            return context.Courses.AsNoTracking().ToList();
+            return db.Courses.AsNoTracking().ToList();
         }
 
-        public ICollection<Course> DeleteCourse(int id)
+        public IEnumerable<Course> Delete(int id)
         {
-            var courseToDelete = context.Courses.Find(id);
+            var courseToDelete = db.Courses.Find(id);
 
             if (courseToDelete == null)
             {
                 throw new ArgumentException("A course with the given Id does not exist");
             }
 
-            this.context.Courses.Remove(courseToDelete);
+            this.db.Courses.Remove(courseToDelete);
 
-            this.context.SaveChanges();
+            this.db.SaveChanges();
 
-            return context.Courses.ToList();
+            return db.Courses.ToList();
         }
 
-        public void DeleteCourses()
+        public void DeleteAll()
         {
-            this.context.Courses.Delete();
+            this.db.Courses.Delete();
 
-            this.context.SaveChanges();
+            this.db.SaveChanges();
         }
 
         private Course ByName(string name)
         {
-            var course = context.Courses.SingleOrDefault(c => c.Name == name);
+            var course = db.Courses.SingleOrDefault(c => c.Name == name);
             //context.Entry(course).State = EntityState.Detached;
 
             return course;

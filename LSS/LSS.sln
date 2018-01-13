@@ -1,17 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2006
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LSS.Api", "LSS.Api\LSS.Api.csproj", "{C0561A0F-FA95-4250-88E7-BCB7F08A87B0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LSS.Data.Models", "LSS.Data.Models\LSS.Data.Models.csproj", "{4015E854-F8D3-4B26-9D49-2A9175978405}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LSS.Services", "LSS.Services\LSS.Services.csproj", "{E754394C-7B74-41C3-B2D1-53F213FC8A51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSS.Data", "LSS.Data\LSS.Data.csproj", "{051A492A-8C75-4CA1-AB97-BD3EE73C342B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LSS.Data", "LSS.Data\LSS.Data.csproj", "{051A492A-8C75-4CA1-AB97-BD3EE73C342B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LSS.DataModels", "LSS.DataModels\LSS.DataModels.csproj", "{DA707EDF-83C8-430C-8BB5-5216F5D13F57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LSS.DataModels", "LSS.DataModels\LSS.DataModels.csproj", "{DA707EDF-83C8-430C-8BB5-5216F5D13F57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		{C0561A0F-FA95-4250-88E7-BCB7F08A87B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0561A0F-FA95-4250-88E7-BCB7F08A87B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0561A0F-FA95-4250-88E7-BCB7F08A87B0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4015E854-F8D3-4B26-9D49-2A9175978405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4015E854-F8D3-4B26-9D49-2A9175978405}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4015E854-F8D3-4B26-9D49-2A9175978405}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4015E854-F8D3-4B26-9D49-2A9175978405}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E754394C-7B74-41C3-B2D1-53F213FC8A51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E754394C-7B74-41C3-B2D1-53F213FC8A51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E754394C-7B74-41C3-B2D1-53F213FC8A51}.Release|Any CPU.ActiveCfg = Release|Any CPU

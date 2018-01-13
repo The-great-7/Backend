@@ -15,6 +15,6 @@
 
         public DateTime DueDate { get; set; }
 
-        public ICollection<StudentAssignment> StudentAssignments { get; set; } = new HashSet<StudentAssignment>();
+        public ICollection<StudentAssignment> Students { get; set; } = new HashSet<StudentAssignment>();
     }
 }

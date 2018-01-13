@@ -1,4 +1,4 @@
-﻿namespace LSS.Services
+﻿namespace LSS.Services.Implementations
 {
     using Contracts;
     using Data;

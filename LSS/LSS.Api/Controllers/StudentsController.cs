@@ -5,31 +5,32 @@
     using Services.Contracts;
     using System;
 
-    [Route("api/courses")]
+    [Route("api/students")]
     public class StudentsController : Controller
     {
-        private IStudentService service;
+        private IStudentService students;
 
-        public StudentsController(IStudentService service)
+        public StudentsController(IStudentService students)
         {
-            this.service = service;
+            this.students = students;
         }
 
         // GET: api/students
         [HttpGet]
         public IActionResult Get()
         {
-            var students = this.service.GetStudents();
+            var students = this.students.All();
+
             return this.Ok(students);
         }
 
-        // GET: api/Students/5
+        // GET: api/students/5
         [HttpGet("{id}", Name = "Get")]
         public IActionResult Get(int id)
         {
             try
             {
-                var student = service.StudentById(id);
+                var student = students.ById(id);
 
                 return this.Ok(student);
             }
@@ -39,13 +40,13 @@
             }
         }
 
-        // POST: api/Students
+        // POST: api/students
         [HttpPost]
         public IActionResult Post([FromBody]StudentDto model)
         {
             try
             {
-                var student = this.service.AddStudent(model);
+                var student = this.students.Add(model);
 
                 return this.Ok(student);
             }
@@ -55,7 +56,7 @@
             }
         }
 
-        // PUT: api/Students/5
+        // PUT: api/students/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]StudentDto model)
         {
@@ -71,7 +72,7 @@
                     Grade = model.Grade
                 };
 
-                var students = this.service.ReplaceStudent(id, student);
+                var students = this.students.Replace(id, student);
 
                 return this.Ok(students);
             }
@@ -85,7 +86,7 @@
         [HttpDelete]
         public IActionResult Delete()
         {
-            this.service.DeleteStudents();
+            this.students.DeleteAll();
 
             return this.Ok();
         }
@@ -96,7 +97,7 @@
         {
             try
             {
-                var students = this.service.DeleteStudent(id);
+                var students = this.students.Delete(id);
 
                 return this.Ok(students);
             }

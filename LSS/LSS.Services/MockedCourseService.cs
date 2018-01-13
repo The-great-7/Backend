@@ -16,17 +16,17 @@
 
         public List<Course> Courses { get; set; }
 
-        public ICollection<Course> GetCourses()
+        public IEnumerable<Course> All()
         {
             return this.Courses.ToArray();
         }
 
-        public Course CourseById(int id)
+        public Course ById(int id)
         {
             return this.Courses.Find(x => x.Id == id);
         }
         
-        public ICollection<Course> AddCourse(string name)
+        public IEnumerable<Course> Add(string name)
         {
             var id = this.Courses.Count;
             var course = new Course { Id = ++id, Name = name };
@@ -35,7 +35,7 @@
             return this.Courses;
         }
 
-        public ICollection<Course> ReplaceCourse(int id, CourseDto courseDto)
+        public IEnumerable<Course> Replace(int id, CourseDto courseDto)
         {
             var course = this.Courses.Find(x => x.Id == id);
             course.Name = courseDto.Name;
@@ -43,9 +43,9 @@
             return this.Courses;
         }
 
-        public ICollection<Course> ReplaceCourses(CourseDto[] coursesDtos)
+        public IEnumerable<Course> Replace(CourseDto[] coursesDtos)
         {
-            DeleteCourses();
+            DeleteAll();
 
             var courses = Mapper.Map<List<Course>>(coursesDtos);
 
@@ -54,13 +54,13 @@
             return courses.ToArray();
         }
 
-        public ICollection<Course> DeleteCourse(int id)
+        public IEnumerable<Course> Delete(int id)
         {
             this.Courses.RemoveAt(--id);
             return this.Courses;
         }
 
-        public void DeleteCourses()
+        public void DeleteAll()
         {
             this.Courses.Clear();
         }

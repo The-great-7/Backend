@@ -15,7 +15,7 @@
                 .HasForeignKey(sc => sc.CourseId);
 
             builder.HasOne(sc => sc.Student)
-                .WithMany(s => s.StudentCourses)
+                .WithMany(s => s.Courses)
                 .HasForeignKey(sc => sc.StudentId);
         }
     }

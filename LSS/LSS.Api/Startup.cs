@@ -8,8 +8,8 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Services;
     using Services.Contracts;
+    using Services.Implementations;
     using System;
 
     public class Startup
@@ -28,6 +28,8 @@
             services.AddDbContext<LSSDbContext>();
 
             services.AddDomainServices();
+
+            services.AddRouting(routing => routing.LowercaseUrls = true);
 
             services.AddMvc(options =>
             {

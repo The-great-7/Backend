@@ -6,18 +6,18 @@
 
     public interface ICourseService
     {
-        Course CourseById(int id);
+        Course ById(int id);
 
-        ICollection<Course> GetCourses();
+        IEnumerable<Course> All();
 
-        ICollection<Course> AddCourse(string name);
+        IEnumerable<Course> Add(string name);
 
-        ICollection<Course> ReplaceCourses(CourseDto[] coursesDtos);
+        IEnumerable<Course> Replace(CourseDto[] coursesDtos);
 
-        ICollection<Course> ReplaceCourse(int id, CourseDto courseDto);
+        IEnumerable<Course> Replace(int id, CourseDto courseDto);
 
-        ICollection<Course> DeleteCourse(int id);
+        IEnumerable<Course> Delete(int id);
 
-        void DeleteCourses();
+        void DeleteAll();
     }
 }

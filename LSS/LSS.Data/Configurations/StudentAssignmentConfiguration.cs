@@ -11,11 +11,11 @@
             builder.HasKey(s => new { s.AssignmentId,s.StudentId});
             
             builder.HasOne(s => s.Student)
-                .WithMany(s => s.StudentAssignments)
+                .WithMany(s => s.Assignments)
                 .HasForeignKey(s => s.StudentId);
 
             builder.HasOne(a => a.Assignment)
-                .WithMany(s => s.StudentAssignments)
+                .WithMany(s => s.Students)
                 .HasForeignKey(a => a.AssignmentId);
         }
     }

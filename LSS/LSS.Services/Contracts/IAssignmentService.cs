@@ -2,21 +2,22 @@
 {
     using Data.Models;
     using DataModels;
+    using System.Collections.Generic;
 
     public interface IAssignmentService
     {
-        Assignment AssignmentById(int id);
+        Assignment ById(int id);
 
-        Assignment[] GetAssignments();
+        IEnumerable<Assignment> All();
 
-        Assignment AddAssignment(AssignmentDto assignmentDto);
+        Assignment Add(AssignmentDto assignmentDto);
 
-        Assignment[] ReplaceAssignments(AssignmentDto[] assignments);
+        IEnumerable<Assignment> Replace(AssignmentDto[] assignmentsDtos);
 
-        Assignment ReplaceAssignment(int id, AssignmentDto assignmentDto);
+        Assignment Replace(int id, AssignmentDto assignmentDto);
 
-        void DeleteAssignment(int id);
+        void Delete(int id);
 
-        void DeleteAssignments();
+        void DeleteAll();
     }
 }

@@ -1,23 +1,23 @@
 ﻿namespace LSS.Services.Contracts
 {
-    using Data.Models;
     using DataModels;
+    using Models;
     using System.Collections.Generic;
 
     public interface IStudentService
     {
-        Student StudentById(int id);
+        StudentServiceModel ById(int id);
 
-        Student[] GetStudents();
+        IEnumerable<StudentServiceModel> All();
 
-        Student AddStudent(StudentDto studentDto);
+        StudentServiceModel Add(StudentDto studentDto);
 
-        Student[] ReplaceStudents(StudentDto[] students);
+        IEnumerable<StudentServiceModel> Replace(IEnumerable<StudentDto> studentsDtos);
 
-        Student ReplaceStudent(int id, StudentDto studentDto);
+        StudentServiceModel Replace(int id, StudentDto studentDto);
 
-        ICollection<Student> DeleteStudent(int id);
+        IEnumerable<StudentServiceModel> Delete(int id);
 
-        void DeleteStudents();
+        void DeleteAll();
     }
 }
