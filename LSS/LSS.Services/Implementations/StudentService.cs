@@ -6,6 +6,7 @@
     using Data;
     using Data.Models;
     using DataModels;
+    using LSS.Core;
     using LSS.Services.Models;
     using Microsoft.EntityFrameworkCore;
     using System;
@@ -122,7 +123,7 @@
         {
             if (student == null)
             {
-                return false;
+                throw new ArgumentException(Constants.StudentNonExists);
             }
 
             return true;
@@ -134,7 +135,7 @@
                                             && s.MiddleName == student.MiddleName 
                                             && s.LastName == student.LastName))
             {
-                throw new InvalidOperationException("A student with the same name already exists");
+                throw new InvalidOperationException(Constants.DublicateStudentName);
             }
 
             return false;

@@ -1,6 +1,6 @@
 ﻿namespace LSS.Data.Models
 {
-    using LSS.Core;
+    using Core;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -11,7 +11,7 @@
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(WebConstants.AssigmentNameLength)]
+        [MaxLength(Constants.AssigmentNameLength)]
         public string Name { get; set; }
 
         public int CourseId { get; set; }

@@ -1,9 +1,7 @@
 ﻿namespace LSS.Core
 {
-    public class WebConstants
+    public class Constants
     {
-        //TODO: Add exception strings here ;) 
-
         public const int AssigmentNameLength = 70;
         public const int DefaultDueDateDays = 7;
 
@@ -17,5 +15,14 @@
         public const int UsernameMaxLength = 30;
         public const int PasswordMinLength = 3;
         public const int PasswordMaxLength = 30;
+
+        public const string DublicateAssignmentName = "An Assignment with the same name already exists.";
+        public const string AssignmentNonExists = "An assignment with the given Id does not exist.";
+
+        public const string DublicateCourseName = "A course with the given name already exists.";
+        public const string CourseNonExists = "A course with the given Id does not exist.";        
+
+        public const string DublicateStudentName = "A student with the same name already exists.";
+        public const string StudentNonExists = "A student with the provided Id does not exist.";
     }
 }

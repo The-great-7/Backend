@@ -9,7 +9,7 @@
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(WebConstants.CourseNameLength)]
+        [MaxLength(Constants.CourseNameLength)]
         public string Name { get; set; }
 
         public IEnumerable<StudentCourse> Students { get; set; } = new HashSet<StudentCourse>();

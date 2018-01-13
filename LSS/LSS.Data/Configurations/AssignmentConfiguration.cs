@@ -8,7 +8,6 @@
     {
         public void Configure(EntityTypeBuilder<Assignment> builder)
         {
-
             builder
                 .HasIndex(a => a.Name)
                 .IsUnique();

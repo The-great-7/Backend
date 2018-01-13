@@ -2,6 +2,7 @@
 {
     using AutoMapper;
     using Contracts;
+    using Core;
     using Data;
     using Data.Models;
     using DataModels;
@@ -28,7 +29,7 @@
 
             if (course == null)
             {
-                throw new ArgumentException("A course with the given Id does not exist");
+                throw new ArgumentException(Constants.CourseNonExists);
             }
 
             this.db.Entry(course).State = EntityState.Detached;
@@ -49,7 +50,7 @@
 
             if (alreadyExists != null)
             {
-                throw new InvalidOperationException("A course with the given name already exists.");
+                throw new InvalidOperationException(Constants.DublicateCourseName);
             }
 
             var course = new Course()
@@ -80,14 +81,11 @@
         {
             var course = db.Courses.Find(id);
 
-            if (course == null)
+            if (ValidateCourse(course))
             {
-                throw new ArgumentException("A course with the given Id does not exist.");
+                course.Name = courseDto.Name;
+                this.db.SaveChanges();
             }
-
-            course.Name = courseDto.Name;
-
-            this.db.SaveChanges();
 
             return db.Courses.AsNoTracking().ToList();
         }
@@ -96,14 +94,11 @@
         {
             var courseToDelete = db.Courses.Find(id);
 
-            if (courseToDelete == null)
+            if (ValidateCourse(courseToDelete))
             {
-                throw new ArgumentException("A course with the given Id does not exist");
+                this.db.Courses.Remove(courseToDelete);
+                this.db.SaveChanges();
             }
-
-            this.db.Courses.Remove(courseToDelete);
-
-            this.db.SaveChanges();
 
             return db.Courses.ToList();
         }
@@ -113,6 +108,16 @@
             this.db.Courses.Delete();
 
             this.db.SaveChanges();
+        }
+
+        private bool ValidateCourse(Course course)
+        {
+            if (course == null)
+            {
+                throw new ArgumentException(Constants.CourseNonExists);
+            }
+
+            return true;
         }
 
         private Course ByName(string name)

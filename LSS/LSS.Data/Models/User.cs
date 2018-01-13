@@ -7,12 +7,12 @@
     {
         public int Id { get; set; }
 
-        [MinLength(WebConstants.UsernameMinLength)]
-        [MaxLength(WebConstants.UsernameMaxLength)]
+        [MinLength(Constants.UsernameMinLength)]
+        [MaxLength(Constants.UsernameMaxLength)]
         public string Username { get; set; }
 
-        [MinLength(WebConstants.PasswordMinLength)]
-        [MaxLength(WebConstants.PasswordMaxLength)]
+        [MinLength(Constants.PasswordMinLength)]
+        [MaxLength(Constants.PasswordMaxLength)]
         public string Password { get; set; }
 
         public bool IsDeleted { get; set; }

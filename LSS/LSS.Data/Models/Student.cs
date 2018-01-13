@@ -9,21 +9,21 @@
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(WebConstants.StudentNameLength)]
+        [MaxLength(Constants.StudentNameLength)]
         public string FirstName { get; set; }
 
         [Required]
-        [MaxLength(WebConstants.StudentNameLength)]
+        [MaxLength(Constants.StudentNameLength)]
         public string MiddleName { get; set; }
 
         [Required]
-        [MaxLength(WebConstants.StudentNameLength)]
+        [MaxLength(Constants.StudentNameLength)]
         public string LastName { get; set; }
 
-        [MaxLength(WebConstants.StudentAddressLength)]
+        [MaxLength(Constants.StudentAddressLength)]
         public string Address { get; set; }
 
-        [MaxLength(WebConstants.StudentPhoneNumberLength)]
+        [MaxLength(Constants.StudentPhoneNumberLength)]
         public string PhoneNumber { get; set; }
 
         public decimal? Grade { get; set; }

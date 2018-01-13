@@ -2,6 +2,7 @@
 {
     using AutoMapper;
     using Contracts;
+    using Core;
     using Data;
     using Data.Models;
     using DataModels;
@@ -39,7 +40,7 @@
 
             if (db.Assignments.Any(a => a.Name == assignment.Name))
             {
-                throw new InvalidOperationException("An Assignment with the same name already exists.");
+                throw new InvalidOperationException(Constants.DublicateAssignmentName);
             }
 
             this.db.Assignments.Add(assignment);
@@ -95,7 +96,7 @@
         {
             if (assignment == null)
             {
-                throw new ArgumentException("An assignment with the given Id does not exist");
+                throw new ArgumentException(Constants.AssignmentNonExists);
             }
         }
     }

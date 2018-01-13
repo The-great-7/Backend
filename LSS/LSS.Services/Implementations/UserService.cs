@@ -1,6 +1,7 @@
 ﻿namespace LSS.Services.Implementations
 {
     using Contracts;
+    using Core;
     using Data;
     using Data.Models;
     using DataModels;
@@ -22,12 +23,12 @@
         {
             if (!IsLogged())
             {
-                return "You need to login first!";
+                return Constants.LoginFirst;
             }
 
-            if (passwordDetails.Length != 3)
+            if (passwordDetails.Length != Constants.PasswordDetailsLength)
             {
-                return "Invalid arguments!";
+                return Constants.InvalidArguments;
             }
 
             var password = passwordDetails[0];
@@ -36,7 +37,7 @@
 
             if (password != repeatedPassword)
             {
-                return "Passwords do not match!";
+                return Constants.PasswordsNotMatch;
             }
 
             var user = LoggedUser.User;
@@ -44,39 +45,39 @@
 
             if (!IsValid(user))
             {
-                return "Password length is between 3 and 30!";
+                return Constants.PasswordLengthRequire;
             }
 
             UpdateUser("Password", LoggedUser.User.Id, newPassword);
 
-            return $"Password successfully changed!";
+            return Constants.PasswordChanged;
         }
 
         public string ChangeUsername(string newUsername)
         {
             if (!IsLogged())
             {
-                return "You need to login first!";
+                return Constants.LoginFirst;
             }
 
             UpdateUser("Username", LoggedUser.User.Id, newUsername);
 
-            return "Username successfully changed!";
+            return Constants.UsernameChanged;
         }
 
         public string DeleteAccount()
         {
             if (!IsLogged())
             {
-                return "You need to login first!";
+                return Constants.LoginFirst;
             }
 
             var id = LoggedUser.User.Id;
             LogOut();
 
-            UpdateUser("IsDeleted",id,"1");
+            UpdateUser("IsDeleted", id, "1");
 
-            return "Account deleted!";
+            return Constants.AccountDeleted;
         }
 
         public string Login(params string[] userDetails)
@@ -88,7 +89,7 @@
 
             if (user == null || user.Password != password)
             {
-                return "Invalid username or password!";
+                return Constants.InvalidUsernameOrPassword;
             }
 
             LoggedUser.User = user;
@@ -100,12 +101,12 @@
         {
             if (LoggedUser.User == null)
             {
-                return "You need to login first!";
+                return Constants.LoginFirst;
             }
 
             LoggedUser.User = null;
-
-            return "Bye";
+        
+            return Constants.GoodbyeMessage;
         }
 
         public string RegisterUser(params string[] userDetails)
@@ -116,7 +117,7 @@
 
             if (password != repeatPassword)
             {
-                return "Passwords do not match!";
+                return Constants.PasswordsNotMatch;
             }
 
             var user = new User()
@@ -127,7 +128,7 @@
 
             if (!IsValid(user))
             {
-                return "Invalid username or password!";
+                return Constants.InvalidUsernameOrPassword;
             }
 
             this.context.Users.Add(user);
@@ -166,6 +167,7 @@
         private static bool IsValid(object obj)
         {
             //Checking if Annotations in current object are valid
+
             var context = new ValidationContext(obj);
             var validateResults = new List<ValidationResult>();
 
